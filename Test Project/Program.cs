@@ -2,9 +2,6 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(_logger);
-
 // Configure logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole(); // Ensure console logging is added for debugging
