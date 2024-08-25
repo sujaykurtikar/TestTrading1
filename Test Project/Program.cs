@@ -2,9 +2,6 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var _logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.FromLogContext().CreateLogger();
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(_logger);
 
@@ -18,7 +15,7 @@ builder.Services.AddControllers();
 
 // Register the services for dependency injection
 //builder.Services.AddSingleton(new LoggerFactory ("logs/log.txt")); // Adjust the path if needed
-builder.Services.AddSingleton<InMemoryLogService>();
+
 builder.Services.AddSingleton<Test_Project.Controllers.ControlController.ITaskStateService, Test_Project.Controllers.ControlController.TaskStateService>(); 
 builder.Services.AddSingleton<PeriodicTaskService>(); // Register PeriodicTaskService
 builder.Services.AddSingleton<HistoricalDataFetcher>();
